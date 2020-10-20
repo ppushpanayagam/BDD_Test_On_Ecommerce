@@ -9,8 +9,9 @@ public class HomePage extends EventsWrapper {
         return this;
     }
 
-    public AuthenticationPage clickSignInButton(){
-        clickById(prop.getProperty("HomePage_ClickSigninBtnBy_ClassName"));
+    public AuthenticationPage clickSignInButton() throws InterruptedException {
+        Thread.sleep(5000);
+        clickByXpath(prop.getProperty("HomePage_ClickSigninBtnBy_Xpath"));
         return new AuthenticationPage();
     }
 }

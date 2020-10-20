@@ -38,7 +38,6 @@ public class EventsWrapper implements EventsInterFace {
     public void enterById(String idValue,String data){
 
         try{
-            driver.findElement(By.id(idValue)).clear();
             driver.findElement(By.id(idValue)).sendKeys(data);
 
         } catch (NoSuchElementException e) {
@@ -50,6 +49,16 @@ public class EventsWrapper implements EventsInterFace {
 
         try {
             driver.findElement(By.id(idValue)).click();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clickByXpath(String xpathValue) {
+
+        try {
+            driver.findElement(By.xpath(xpathValue)).click();
 
         } catch (Exception e) {
             e.printStackTrace();
