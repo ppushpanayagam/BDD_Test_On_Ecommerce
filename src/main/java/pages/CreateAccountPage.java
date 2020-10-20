@@ -1,10 +1,17 @@
 package pages;
 
-public class CreateAccountPage {
+import wrappers.EventsWrapper;
 
-    public CreateAccountPage verifyTitleOfThePage(){
+public class CreateAccountPage extends EventsWrapper {
+
+    public CreateAccountPage verifyTitleOfThePage(String data){
+        verifyTitle(data);
         return this;
     }
 
+    public CreateAccountPage clickTitleRadioBtn(){
+        clickById(prop.getProperty("CreateAnAccountPage_ClickGenderOptionBy_Id"));
+        return this;
+    }
 
 }

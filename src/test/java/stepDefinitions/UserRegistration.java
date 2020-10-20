@@ -8,14 +8,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import wrappers.EventsWrapper;
 
-public class UserRegistration {
+public class UserRegistration extends EventsWrapper {
 	public static WebDriver driver;
 	
 	@Given("^Launch the application$")
 	public void launch_the_application() throws Throwable {
 	   System.out.println("This is from Given");
-
+		launchBrowser();
 	   Thread.sleep(5000);
 	   
 	}
