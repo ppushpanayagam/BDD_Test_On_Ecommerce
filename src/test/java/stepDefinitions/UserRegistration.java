@@ -15,11 +15,7 @@ public class UserRegistration {
 	@Given("^Launch the application$")
 	public void launch_the_application() throws Throwable {
 	   System.out.println("This is from Given");
-	   System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-	   driver = new ChromeDriver();
-	   driver.manage().window().maximize();
-	   driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	   driver.get("http://automationpractice.com/index.php");
+
 	   Thread.sleep(5000);
 	   
 	}
