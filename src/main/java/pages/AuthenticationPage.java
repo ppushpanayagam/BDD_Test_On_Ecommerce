@@ -18,4 +18,5 @@ public class AuthenticationPage extends EventsWrapper {
         clickById(prop.getProperty("AuthenticationPage_ClickCreateAnAccountBtnBy_Id"));
         return new CreateAccountPage();
     }
+
 }

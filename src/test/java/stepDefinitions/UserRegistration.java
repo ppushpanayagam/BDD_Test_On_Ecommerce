@@ -1,7 +1,10 @@
 package stepDefinitions;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import cucumber.api.java.en.And;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -11,29 +14,33 @@ import cucumber.api.java.en.When;
 import pages.AuthenticationPage;
 import pages.CreateAccountPage;
 import pages.HomePage;
+import pages.UserDashBoardPage;
 import wrappers.EventsWrapper;
 
 public class UserRegistration {
-	public static WebDriver driver;
+
 	HomePage homePage = new HomePage();
 	AuthenticationPage authenticationPage = new AuthenticationPage();
 	CreateAccountPage createAccountPage = new CreateAccountPage();
-	
+	UserDashBoardPage userDashBoardPage = new UserDashBoardPage();
+
 	@Given("^Launch the application$")
 	public void launch_the_application() throws Throwable {
 		homePage.verifyTitle("My Store");
 		homePage.clickSignInButton();
-	    Thread.sleep(5000);
 	}
 
-	@When("^User enter username and password$")
-	public void user_enter_username_and_password() throws Throwable {
-		authenticationPage.enterEmailId("ppushpanayagam@hotmail.com");
+	@When("^User enter email id$")
+	public void user_enter_email_id() throws Throwable {
+		Random random = new Random();
+		int randomInt = random.nextInt(50) + 1;
+		authenticationPage.verifyTitleOfThePage("Login - My Store");
+		authenticationPage.enterEmailId(randomInt+"email@mail.com");
 		authenticationPage.clickCreateAccountBtn();
 	}
 
-	@Then("^User should be able to login$")
-	public void user_should_be_able_to_login() throws Throwable {
+	@And("^the user fill the registration form with valid values$")
+	public void the_user_fill_the_registration_form_with_valid_values() throws Throwable {
 		createAccountPage.clickTitleRadioBtn();
 		createAccountPage.enterFirstName("firstName");
 		createAccountPage.enterLastName("lastName");
@@ -50,6 +57,11 @@ public class UserRegistration {
 		createAccountPage.enterAddressAlias("alias address");
 		createAccountPage.clickRegisterPageBtn();
 
+	}
+
+	@Then("^User should be able to register a new account$")
+	public void user_should_be_able_to_register_a_new_account() throws Throwable {
+		Assert.assertEquals(true, userDashBoardPage.verifyLoggedUserDetails("firstName lastName"));
 	}
 
 }

@@ -11,7 +11,7 @@ public class HooksForTest {
     @Before
     public void setUp(){
         eventsWrapper.loadObjects();
-        eventsWrapper.launchBrowser();
+        eventsWrapper.launchApp();
     }
 
     @After

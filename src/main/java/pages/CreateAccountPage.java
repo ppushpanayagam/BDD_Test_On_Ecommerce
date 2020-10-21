@@ -81,8 +81,8 @@ public class CreateAccountPage extends EventsWrapper {
         return this;
     }
 
-    public CreateAccountPage clickRegisterPageBtn(){
+    public UserDashBoardPage clickRegisterPageBtn(){
         clickById(prop.getProperty("CreateAnAccountPage_ClickRegisterBtnBy_Id"));
-        return this;
+        return new UserDashBoardPage();
     }
 }

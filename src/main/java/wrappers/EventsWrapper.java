@@ -15,11 +15,12 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class EventsWrapper implements EventsInterFace {
+
     Logger log = Logger.getLogger("EventsWrapper.class");
     public static WebDriver driver;
     public static Properties prop;
 
-    public void launchBrowser() {
+    public void launchApp() {
         System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -79,18 +80,20 @@ public class EventsWrapper implements EventsInterFace {
         }
     }
 
-    public void VerifyTextValueById(String iDValue,String data){
+    public boolean VerifyTextValueByXpath(String xpathValue,String data) throws Throwable{
         boolean bReturn = false;
         try {
-            if(driver.findElement(By.id(iDValue)).getAttribute("value").trim().equalsIgnoreCase(data)){
-                log.info(data+" verified and working as expected");
+            if(driver.findElement(By.xpath(xpathValue)).getText().trim().equalsIgnoreCase(data)){
+                log.info(" verified and"+ data +" is working as expected");
+                bReturn = true;
             }
             else {
-                log.info(data+" verified and NOT working as expected");
+                log.info(" verified and"+ data +" is NOT working as expected");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+           log.error("Logger Error: "+ e);
         }
+        return bReturn;
     }
 
     public void verifyTitle(String data){
