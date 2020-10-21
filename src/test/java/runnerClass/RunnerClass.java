@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features= "./src/main/resources/featureFiles/userRegistration.feature", glue="stepDefinitions", monochrome = true)
+@CucumberOptions(features= "./src/main/resources/featureFiles/userRegistration.feature", glue={"stepDefinitions", "hooks"}, monochrome = true)
 public class RunnerClass {
 
 }

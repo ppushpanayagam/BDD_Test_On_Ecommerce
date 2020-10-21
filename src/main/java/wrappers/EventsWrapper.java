@@ -1,5 +1,6 @@
 package wrappers;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -14,7 +15,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class EventsWrapper implements EventsInterFace {
-
+    Logger log = Logger.getLogger("EventsWrapper.class");
     public static WebDriver driver;
     public static Properties prop;
 
@@ -39,8 +40,9 @@ public class EventsWrapper implements EventsInterFace {
 
         try{
             driver.findElement(By.id(idValue)).sendKeys(data);
-
+            log.info("The value "+data+" entered Successfully");
         } catch (NoSuchElementException e) {
+            log.info("The value "+data+" NOT entered Successfully");
             e.printStackTrace();
         }
     }
@@ -49,9 +51,10 @@ public class EventsWrapper implements EventsInterFace {
 
         try {
             driver.findElement(By.id(idValue)).click();
-
+            log.info("Element clicked Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            log.info("Element NOT clicked Successfully");
         }
     }
 
@@ -59,9 +62,10 @@ public class EventsWrapper implements EventsInterFace {
 
         try {
             driver.findElement(By.xpath(xpathValue)).click();
-
+            log.info("Element clicked Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            log.info("Element NOT clicked Successfully");
         }
     }
 
@@ -79,10 +83,10 @@ public class EventsWrapper implements EventsInterFace {
         boolean bReturn = false;
         try {
             if(driver.findElement(By.id(iDValue)).getAttribute("value").trim().equalsIgnoreCase(data)){
-                System.out.println(data+" verified and working as expected");
+                log.info(data+" verified and working as expected");
             }
             else {
-                System.out.println(data+" verified and NOT same as expected");
+                log.info(data+" verified and NOT working as expected");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,13 +98,17 @@ public class EventsWrapper implements EventsInterFace {
         title = driver.getTitle();
         try {
             if(title.trim().equalsIgnoreCase(data)){
-                System.out.println(data+" verified and working as expected");
+                log.info(data+" verified and Title is same as expected");
             }
             else {
-                System.out.println(data+" verified and NOT same as expected");
+                log.info(data+" verified and Title is NOT same as expected");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void quiteBrowser(){
+        driver.quit();
     }
 }

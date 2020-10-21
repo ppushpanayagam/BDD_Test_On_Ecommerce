@@ -15,15 +15,12 @@ import wrappers.EventsWrapper;
 
 public class UserRegistration {
 	public static WebDriver driver;
-	EventsWrapper eventsWrapper = new EventsWrapper();
 	HomePage homePage = new HomePage();
 	AuthenticationPage authenticationPage = new AuthenticationPage();
 	CreateAccountPage createAccountPage = new CreateAccountPage();
 	
 	@Given("^Launch the application$")
 	public void launch_the_application() throws Throwable {
-		eventsWrapper.loadObjects();
-		eventsWrapper.launchBrowser();
 		homePage.verifyTitle("My Store");
 		homePage.clickSignInButton();
 	    Thread.sleep(5000);
@@ -31,7 +28,7 @@ public class UserRegistration {
 
 	@When("^User enter username and password$")
 	public void user_enter_username_and_password() throws Throwable {
-		authenticationPage.enterEmailId("pushpanayagam@hotmail.com");
+		authenticationPage.enterEmailId("ppushpanayagam@hotmail.com");
 		authenticationPage.clickCreateAccountBtn();
 	}
 
