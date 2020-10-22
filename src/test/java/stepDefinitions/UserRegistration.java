@@ -33,7 +33,7 @@ public class UserRegistration {
 	@When("^User enter email id$")
 	public void user_enter_email_id() throws Throwable {
 		Random random = new Random();
-		int randomInt = random.nextInt(50) + 1;
+		int randomInt = random.nextInt(1000) + 1;
 		authenticationPage.verifyTitleOfThePage("Login - My Store");
 		authenticationPage.enterEmailId(randomInt+"email@mail.com");
 		authenticationPage.clickCreateAccountBtn();
